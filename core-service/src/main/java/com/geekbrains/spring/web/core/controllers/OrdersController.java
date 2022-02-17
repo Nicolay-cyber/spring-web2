@@ -1,5 +1,6 @@
 package com.geekbrains.spring.web.core.controllers;
 
+import com.geekbrains.spring.web.api.core.ProductDto;
 import com.geekbrains.spring.web.core.converters.OrderConverter;
 import com.geekbrains.spring.web.api.core.OrderDetailsDto;
 import com.geekbrains.spring.web.api.core.OrderDto;
@@ -23,7 +24,10 @@ public class OrdersController {
     public void createOrder(@RequestHeader String username, @RequestBody OrderDetailsDto orderDetailsDto) {
         orderService.createOrder(username, orderDetailsDto);
     }
-
+    @GetMapping("/most_popular_ordered_products")
+    public List<ProductDto> getMostPopularOrderedProducts(){
+        return orderService.getMostPopularOrderedProducts();
+    }
     @GetMapping
     public List<OrderDto> getCurrentUserOrders(@RequestHeader String username) {
         return orderService.findOrdersByUsername(username).stream()
