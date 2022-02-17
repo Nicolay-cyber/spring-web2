@@ -1,6 +1,7 @@
 package com.geekbrains.spring.web.core.services;
 
 import com.geekbrains.spring.web.api.carts.CartDto;
+import com.geekbrains.spring.web.api.core.ProductDto;
 import com.geekbrains.spring.web.api.exceptions.ResourceNotFoundException;
 import com.geekbrains.spring.web.api.core.OrderDetailsDto;
 import com.geekbrains.spring.web.core.entities.Order;
@@ -11,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,5 +48,9 @@ public class OrderService {
 
     public List<Order> findOrdersByUsername(String username) {
         return ordersRepository.findAllByUsername(username);
+    }
+    public List<ProductDto>getMostPopularOrderedProducts(){
+        return ordersRepository.findMostPopularOrderedProducts();
+
     }
 }
